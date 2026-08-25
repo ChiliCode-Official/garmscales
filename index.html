@@ -188,6 +188,16 @@
       scroll-behavior: auto !important;
     }
   }
+  .garmscales-origin-plan {
+    min-height: 100%; box-sizing: border-box; padding: 32px; border-radius: 24px;
+    background: #111; color: #fff; border: 1px solid rgba(255,255,255,.18);
+    display: flex; flex-direction: column; gap: 18px; font-family: Inter, sans-serif;
+  }
+  .garmscales-origin-plan h3 { margin: 0; font-size: 26px; letter-spacing: -.04em; }
+  .garmscales-origin-plan .origin-price { font-size: 34px; font-weight: 700; }
+  .garmscales-origin-plan p { margin: 0; color: rgba(255,255,255,.72); line-height: 1.5; }
+  .garmscales-origin-plan ul { margin: 0; padding-left: 20px; color: rgba(255,255,255,.84); line-height: 1.8; }
+  .garmscales-origin-plan a { margin-top: auto; padding: 14px 18px; border: 1px solid rgba(255,255,255,.5); color: #fff; text-align: center; text-decoration: none; border-radius: 999px; }
 </style>
 </head>
 <body>
@@ -316,6 +326,15 @@
   const ownerName = 'Luis Rodrigo (Rodricg30)';
   const ownerRole = 'Founder & Lead Tech, GARMSCALES';
   const ownerImage = './founder.jpg';
+  const translations = new Map([
+    ['COVIX', 'GARMSCALES'], ['Covix', 'GARMSCALES'],
+    ['Trusted by growing brands.', 'Marcas listas para crecer.'],
+    ['Trusted by', 'Marcas que ya están creciendo'],
+    ['growing brands.', 'marcas en crecimiento.'],
+    ['We combine design and no-code expertise to create experiences that help businesses launch faster, scale confidently, and achieve growth.', 'Combinamos estrategia, diseño y tecnología para que tu marca lance más rápido, escale con confianza y convierta mejor.'],
+    ['Discover', 'Define'], ['Design', 'Diseña'], ['Develop', 'Desarrolla'], ['Launch', 'Lanza'],
+    ['Twitter', 'GARMSCALES'], ['tweets', 'Listos para escalar a tus metas']
+  ]);
 
   // Corrige el testimonio contaminado por el contenido original de la plantilla.
   const replaceText = (root) => {
@@ -323,6 +342,7 @@
     const nodes = [];
     while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach((node) => {
+      translations.forEach((value, key) => { if (node.nodeValue.includes(key)) node.nodeValue = node.nodeValue.replaceAll(key, value); });
       if (node.nodeValue.includes('Sarah Mitchell')) node.nodeValue = node.nodeValue.replaceAll('Sarah Mitchell', ownerName);
       if (node.nodeValue.includes('Founder, Nova Studio')) node.nodeValue = node.nodeValue.replaceAll('Founder, Nova Studio', ownerRole);
       if (node.nodeValue.includes('Fundadora, Nova Studio')) node.nodeValue = node.nodeValue.replaceAll('Fundadora, Nova Studio', ownerRole);
@@ -335,15 +355,56 @@
       const source = `${image.currentSrc || image.src} ${image.alt || ''}`.toLowerCase();
       if (source.includes('imagen 01') || source.includes('image01') || source.includes('printful')) image.src = './fulfillment.png';
       if (source.includes('image02') || source.includes('fourthwall')) image.src = './streetwear.png';
+      if (source.includes('rounw') || source.includes('shopify')) image.src = './shopify.png';
+      if (source.includes('waqt') || source.includes('branding')) image.src = './branding.png';
+      if (source.includes('4xwz') || source.includes('automation')) image.src = './automation.png';
       image.loading = image.getBoundingClientRect().top < innerHeight ? 'eager' : 'lazy';
       image.decoding = 'async';
       image.fetchPriority = image.getBoundingClientRect().top < innerHeight ? 'high' : 'low';
     });
   };
 
-  const run = () => { replaceText(document.body); replaceImages(); };
+  const addOriginPlan = () => {
+    if (document.querySelector('.garmscales-origin-plan')) return;
+    const headings = [...document.querySelectorAll('h1,h2,h3,h4,h5,h6')];
+    const core = headings.find((node) => /Plan CORE/i.test(node.textContent));
+    const nexus = headings.find((node) => /Plan NEXUS/i.test(node.textContent));
+    if (!core || !nexus) return;
+    let container = core.parentElement;
+    while (container && (!container.textContent.includes('Plan CORE') || !container.textContent.includes('Plan NEXUS'))) container = container.parentElement;
+    if (!container || !container.parentElement) return;
+    const plan = document.createElement('article');
+    plan.className = 'garmscales-origin-plan';
+    plan.innerHTML = '<span style="color:#ff3b30;font-size:12px;font-weight:700;letter-spacing:.12em">PARA EMPEZAR DESDE CERO</span><h3>ORIGIN</h3><div class="origin-price">$4,999 <small style="font-size:13px">MXN</small></div><p>Creamos la base completa de tu marca para que puedas lanzar con una identidad clara y una tienda lista para vender.</p><ul><li>Nombre, concepto y dirección visual</li><li>Logo y paleta de colores</li><li>Mockups iniciales de prendas</li><li>Tienda conectada a proveedores</li></ul><a href="./contact.html">Construir mi marca</a>';
+    container.parentElement.appendChild(plan);
+  };
+
+  const updatePlanContent = () => {
+    const core = [...document.querySelectorAll('h1,h2,h3,h4,h5,h6')].find((node) => /Plan CORE/i.test(node.textContent));
+    if (!core) return;
+    let card = core.parentElement;
+    while (card && (!/Plan CORE/i.test(card.textContent) || card.textContent.length > 1800)) card = card.parentElement;
+    if (!card) return;
+    const walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => {
+      if (/\$2,899 MXN/.test(node.nodeValue)) node.nodeValue = node.nodeValue.replaceAll('$2,899 MXN', '$1,499 MXN');
+      if (/Setup de panel de proveedor \(Printful \/ Fourthwall\), tienda base móvil y pasarelas de pago listas\./.test(node.nodeValue)) node.nodeValue = 'Panel de proveedor, e-commerce base y pasarelas de pago listas.';
+    });
+  };
+
+  const run = () => { replaceText(document.body); replaceImages(); updatePlanContent(); addOriginPlan(); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run, { once: true }); else run();
   new MutationObserver(() => replaceText(document.body)).observe(document.body, { childList: true, subtree: true });
+
+  // Usa un asset local ligero como video de apoyo y evita descargarlo hasta que sea visible.
+  document.querySelectorAll('video').forEach((video) => {
+    video.preload = 'metadata';
+    video.setAttribute('playsinline', '');
+    video.loading = 'lazy';
+    if (!video.src && !video.querySelector('source')) video.src = './VIDEOS/1.6.mp4';
+  });
 })();
 </script>
 </html>
