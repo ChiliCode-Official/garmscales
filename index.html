@@ -176,6 +176,19 @@
     }
   </style>
   
+<style id="garmscales-performance-overrides">
+  /* Reduce trabajo de pintura y evita que las animaciones bloqueen el scroll. */
+  html { scroll-behavior: auto; }
+  img { content-visibility: auto; }
+  @media (prefers-reduced-motion: reduce), (max-width: 700px) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
 </head>
 <body>
 	<script async src="https://events.framer.com/script?v=2" data-fid="bc53121f255580473dc24898bb5a7b676fca73f380b2c92a373cb7f0c32050e6" data-no-nt></script>
@@ -298,4 +311,39 @@
 </script>
 
 </body>
+<script id="garmscales-performance-fixes">
+(() => {
+  const ownerName = 'Luis Rodrigo (Rodricg30)';
+  const ownerRole = 'Founder & Lead Tech, GARMSCALES';
+  const ownerImage = './founder.jpg';
+
+  // Corrige el testimonio contaminado por el contenido original de la plantilla.
+  const replaceText = (root) => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => {
+      if (node.nodeValue.includes('Sarah Mitchell')) node.nodeValue = node.nodeValue.replaceAll('Sarah Mitchell', ownerName);
+      if (node.nodeValue.includes('Founder, Nova Studio')) node.nodeValue = node.nodeValue.replaceAll('Founder, Nova Studio', ownerRole);
+      if (node.nodeValue.includes('Fundadora, Nova Studio')) node.nodeValue = node.nodeValue.replaceAll('Fundadora, Nova Studio', ownerRole);
+    });
+  };
+
+  const replaceImages = () => {
+    const images = [...document.images];
+    images.forEach((image) => {
+      const source = `${image.currentSrc || image.src} ${image.alt || ''}`.toLowerCase();
+      if (source.includes('imagen 01') || source.includes('image01') || source.includes('printful')) image.src = './fulfillment.png';
+      if (source.includes('image02') || source.includes('fourthwall')) image.src = './streetwear.png';
+      image.loading = image.getBoundingClientRect().top < innerHeight ? 'eager' : 'lazy';
+      image.decoding = 'async';
+      image.fetchPriority = image.getBoundingClientRect().top < innerHeight ? 'high' : 'low';
+    });
+  };
+
+  const run = () => { replaceText(document.body); replaceImages(); };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run, { once: true }); else run();
+  new MutationObserver(() => replaceText(document.body)).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
 </html>
