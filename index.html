@@ -316,7 +316,7 @@
     }
 
     // Periodic sweep to ensure all hydrated React components are translated immediately
-    setInterval(run, 100);
+    setInterval(run, 2000);
   })();
 </script>
 
@@ -396,7 +396,15 @@
 
   const run = () => { replaceText(document.body); replaceImages(); updatePlanContent(); addOriginPlan(); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run, { once: true }); else run();
-  new MutationObserver(() => replaceText(document.body)).observe(document.body, { childList: true, subtree: true });
+  let refreshTimer;
+  const refreshAfterFramerHydration = () => {
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(run, 80);
+  };
+  new MutationObserver(refreshAfterFramerHydration).observe(document.body, { childList: true, subtree: true });
+  // Framer puede rehidratar secciones en varios ciclos; este barrido garantiza que
+  // el contenido final visible conserve los cambios de GARMSCALES.
+  setInterval(run, 150);
 
   // Usa un asset local ligero como video de apoyo y evita descargarlo hasta que sea visible.
   document.querySelectorAll('video').forEach((video) => {
