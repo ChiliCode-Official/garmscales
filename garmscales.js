@@ -49,6 +49,10 @@
       entries.forEach(entry => {
         const video = entry.target;
         if (entry.isIntersecting) {
+          if (video.preload !== 'auto') {
+            video.preload = 'auto';
+            video.load();
+          }
           if (video.paused && !document.hidden) {
             video.play().catch(() => {});
           }
@@ -58,7 +62,7 @@
           }
         }
       });
-    }, { threshold: 0.05, rootMargin: '100px 0px 100px 0px' });
+    }, { threshold: 0.01, rootMargin: '600px 0px 600px 0px' });
 
     videoElements.forEach(video => videoObserver.observe(video));
 

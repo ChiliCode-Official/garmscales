@@ -112,6 +112,8 @@
 .cylinder-section {
   position: relative;
   overflow: hidden;
+  content-visibility: visible;
+  contain-intrinsic-size: auto;
   padding: 100px 0 120px;
   background: #000;
   color: #fff;
@@ -128,7 +130,7 @@
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 15% 85%, transparent);
   margin-top: 40px;
   touch-action: pan-y;
-  overscroll-behavior: contain;
+  overscroll-behavior: auto;
 }
 .cylinder-container {
   display: grid;
