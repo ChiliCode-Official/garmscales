@@ -70,10 +70,6 @@ function initCylinderCarousels() {
     container.addEventListener('pointermove', move);
     container.addEventListener('pointerup', end);
     container.addEventListener('pointercancel', end);
-    root.addEventListener('wheel', event => {
-      rotation += event.deltaY * 0.22;
-      lastFrame = performance.now();
-    }, { passive: true });
   });
 }
 initCylinderCarousels();
