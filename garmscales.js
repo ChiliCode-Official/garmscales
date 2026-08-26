@@ -376,6 +376,12 @@
     });
   };
 
+  // Prepare the easter egg during the initial load so the first click works.
+  prepareAccel();
+  prepareHeadingFalls();
+  const primedAccelVideo = getAccelVideo();
+  primedAccelVideo.load();
+
   accelMode?.addEventListener('change', () => {
     const isChecked = accelMode.checked;
     accelControl?.classList.toggle('is-active', isChecked);
