@@ -9,3 +9,188 @@
 .hero-content{transform:translate3d(0,var(--hero-shift,0px),0);transition:transform .08s linear}.button span{display:inline-block;transition:transform .25s ease}.button:hover span{transform:translate(3px,-3px)}
 .service-list details{overflow:hidden}.service-list details p{animation:details-in .45s ease both}@keyframes details-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 .plan-hero{padding:190px 0 90px;background:#050505;color:#fff}.plan-hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:50px;align-items:end}.plan-hero h1{margin:0;font-size:clamp(74px,12vw,160px);line-height:.8;letter-spacing:-.08em}.plan-hero-copy{max-width:470px;font-size:20px;line-height:1.5;color:#c8c8c8}.plan-price{margin:24px 0;font-size:62px;font-weight:800;letter-spacing:-.07em}.plan-price small{font-size:15px;letter-spacing:0}.plan-overview{display:grid;grid-template-columns:1fr 1fr;gap:14px}.plan-overview article{min-height:240px;padding:28px;border-radius:18px;background:#fff;border:1px solid var(--line)}.plan-overview h3{margin:46px 0 10px;font-size:26px}.plan-overview p{margin:0;color:#666;line-height:1.5}.plan-overview b{color:var(--red)}.plan-includes{padding-top:40px}.include-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:50px}.include-grid article{min-height:180px;padding:25px;border:1px solid var(--line);border-radius:16px;background:#fff}.include-grid span{display:block;margin-bottom:36px;color:var(--red);font-weight:800}.include-grid h3{margin:0 0 9px;font-size:23px}.include-grid p{margin:0;color:#666;line-height:1.5}.plan-cta{padding:110px 0;background:var(--red);color:#fff}.plan-cta .wrap{display:flex;justify-content:space-between;gap:40px;align-items:end}.plan-cta h2{max-width:800px;margin:0;font-size:clamp(45px,6vw,86px);line-height:.9;letter-spacing:-.06em}@media(max-width:900px){.plan-hero-grid,.plan-overview{grid-template-columns:1fr}.include-grid{grid-template-columns:1fr 1fr}.plan-cta .wrap{align-items:flex-start;flex-direction:column}}@media(max-width:600px){.plan-hero{padding:160px 0 70px}.include-grid{grid-template-columns:1fr}.plan-price{font-size:50px}}
+.spotify-launch{position:fixed;z-index:30;right:24px;bottom:24px;width:52px;height:52px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.3);border-radius:14px;background:#141414;color:#1db954;box-shadow:0 14px 30px rgba(0,0,0,.25);cursor:pointer;transition:transform .3s ease,background .3s ease}.spotify-launch:hover{transform:translateY(-4px) rotate(8deg);background:#262626}.spotify-icon{display:grid;place-items:center;width:100%;height:100%;border-radius:12px;transition:background .3s}.spotify-launch:hover .spotify-icon{background:rgba(255,255,255,.13)}.spotify-icon svg{width:25px;height:25px;fill:#1db954}.spotify-panel[hidden]{display:none}.spotify-panel{position:fixed;z-index:50;inset:0;display:grid;place-items:center;padding:24px}.spotify-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.68);backdrop-filter:blur(8px)}.spotify-card{position:relative;z-index:1;width:min(460px,100%);padding:32px;border-radius:22px;background:#f4f4f2;box-shadow:0 30px 80px rgba(0,0,0,.4);animation:spotify-in .32s cubic-bezier(.22,1,.36,1)}.spotify-card h2{max-width:380px;margin:0;font-size:34px;line-height:1;letter-spacing:-.05em}.spotify-description{margin:18px 0 24px;color:#565656;line-height:1.55}.spotify-card iframe{display:block;border:0;border-radius:12px}.spotify-close{position:absolute;top:16px;right:16px;width:34px;height:34px;border:0;border-radius:50%;background:#e4e4e2;font-size:24px;cursor:pointer}.spotify-close:hover{background:#d5d5d2}@keyframes spotify-in{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}@media(max-width:600px){.spotify-launch{right:16px;bottom:16px;width:50px;height:50px}.spotify-panel{align-items:end;padding:12px}.spotify-card{padding:28px 20px 20px;border-radius:20px}.spotify-card h2{font-size:30px}}
+
+
+/* ── MORPH TEXT COMPONENT (Vengence UI / Shadcn) ── */
+.morph-text-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px 0 20px;
+  max-width: 1000px;
+}
+.morph-text-container {
+  position: relative;
+  user-select: none;
+  font-size: clamp(42px, 7.8vw, 108px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  filter: url(#morph-threshold-hero);
+  font-family: 'Space Grotesk', Inter, sans-serif;
+  color: #fff;
+  width: 100%;
+}
+.morph-word-rotator {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 1.15em;
+  min-width: 12ch;
+}
+.morph-word {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  opacity: 0;
+  white-space: nowrap;
+  animation-name: morph-word-rotate;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+.morph-subtext {
+  margin: 16px 0 0 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--red);
+  font-weight: 700;
+  opacity: 0;
+  animation: morph-fade-up 1s ease-out 0.6s forwards;
+  font-family: 'Space Grotesk', Inter, sans-serif;
+}
+@keyframes morph-word-rotate {
+  0% {
+    opacity: 0;
+    filter: blur(20px);
+    transform: translateY(-50%) scale(0.8);
+  }
+  5% {
+    opacity: 0.5;
+    filter: blur(10px);
+  }
+  15%, 35% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(-50%) scale(1);
+  }
+  45% {
+    opacity: 0.5;
+    filter: blur(10px);
+  }
+  50%, 100% {
+    opacity: 0;
+    filter: blur(20px);
+    transform: translateY(-50%) scale(1.15);
+  }
+}
+@keyframes morph-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 600px) {
+  .morph-text-container {
+    font-size: clamp(34px, 9vw, 56px);
+    line-height: 1.05;
+  }
+  .morph-word-rotator {
+    height: 1.3em;
+  }
+  .morph-subtext {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+}
+
+
+/* ── 3D CYLINDER CAROUSEL (Vengence UI / Shadcn) ── */
+.cylinder-section {
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0 120px;
+  background: #000;
+  color: #fff;
+}
+.cylinder-carousel-root {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  perspective: 42em;
+  mask-image: linear-gradient(90deg, transparent, #000 15% 85%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 15% 85%, transparent);
+  margin-top: 40px;
+}
+.cylinder-container {
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+  animation: cylinder-rotate var(--anim-dur, 36s) linear infinite;
+  cursor: grab;
+}
+.cylinder-container:active {
+  cursor: grabbing;
+}
+.cylinder-card {
+  grid-area: 1/1;
+  width: var(--w, 230px);
+  aspect-ratio: 9/16;
+  height: 380px;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform: rotateY(calc(var(--i) * var(--ba))) translateZ(var(--tz, 380px));
+  transition: filter 0.3s ease;
+  background: #111;
+}
+.cylinder-card video, .cylinder-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cylinder-card .card-caption {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  padding: 14px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, transparent 100%);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cylinder-card .card-caption span {
+  color: var(--red);
+}
+
+@keyframes cylinder-rotate {
+  to {
+    transform: rotateY(1turn);
+  }
+}
+
+@media (max-width: 768px) {
+  .cylinder-carousel-root {
+    height: 440px;
+    perspective: 32em;
+  }
+  .cylinder-card {
+    width: var(--w, 180px);
+    height: 300px;
+  }
+}

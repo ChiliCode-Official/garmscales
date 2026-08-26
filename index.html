@@ -16,7 +16,7 @@
 <body>
   <header class="nav-shell">
     <a class="brand" href="#inicio" aria-label="GARMSCALES, inicio"><img src="./logo.png" alt="GARMSCALES"></a>
-    <nav aria-label="Navegación principal"><a href="#despliegues">Despliegues</a><a href="#servicios">Servicios</a><a href="#proceso">Proceso</a><a href="#planes">Planes</a></nav>
+    <nav aria-label="Navegación principal"><a href="#despliegues">Despliegues</a><a href="#servicios">Servicios</a><a href="#proceso">Proceso</a><a href="#planes">Planes</a><a href="#cultura">Cultura</a></nav>
     <a class="button button-small" href="#contacto">Lanzar mi marca <span>↗</span></a>
     <button class="menu" aria-expanded="false" aria-label="Abrir menú">☰</button>
   </header>
@@ -24,7 +24,38 @@
     <section class="hero" id="inicio">
       <video autoplay muted loop playsinline preload="metadata" poster="./streetwear.png"><source src="./VIDEOS/testimonial-2.mp4" type="video/mp4"></video>
       <div class="hero-shade"></div>
-      <div class="hero-content wrap"><p class="eyebrow light">Creación y despliegue en 7 días laborables</p><h1>Tu marca de ropa.<br><span>Lista para escalar.</span></h1><p class="hero-copy">Tú solo tienes que enfocarte en la publicidad y las ventas. Nosotros ponemos los proveedores, el marketing, la tienda y toda la infraestructura para que tu marca crezca.</p><div class="actions"><a class="button" href="#planes">Ver planes <span>↗</span></a><a class="text-link" href="#despliegues">Explorar el sistema ↓</a></div></div>
+      <!-- ── Threshold SVG filter for morph text ── -->
+      <svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;pointer-events:none">
+        <defs>
+          <filter id="morph-threshold-hero">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -9" result="goo" />
+            <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+          </filter>
+        </defs>
+      </svg>
+
+      <div class="hero-content wrap">
+        <p class="eyebrow light">Creación y despliegue en 7 días laborables</p>
+        
+        <!-- MorphText Hero Component (Editable) -->
+        <div class="morph-text-wrapper" data-interval="2800" data-words='["TU MARCA DE ROPA", "LISTA PARA ESCALAR", "SIN INVENTARIO", "VENTAS GLOBALES"]'>
+          <div class="morph-text-container">
+            <div class="morph-word-rotator">
+              <span class="morph-word" style="animation-delay: 0s; animation-duration: 11.2s;">TU MARCA DE ROPA</span>
+              <span class="morph-word" style="animation-delay: 2.8s; animation-duration: 11.2s;">LISTA PARA ESCALAR</span>
+              <span class="morph-word" style="animation-delay: 5.6s; animation-duration: 11.2s;">SIN INVENTARIO</span>
+              <span class="morph-word" style="animation-delay: 8.4s; animation-duration: 11.2s;">VENTAS GLOBALES</span>
+            </div>
+          </div>
+          <p class="morph-subtext">Diseño · Infraestructura · Conexión directa a proveedores</p>
+        </div>
+
+        <p class="hero-copy">Tú solo tienes que enfocarte en la publicidad y las ventas. Nosotros ponemos los proveedores, el marketing, la tienda y toda la infraestructura para que tu marca crezca.</p>
+        <div class="actions">
+          <a class="button" href="#planes">Ver planes <span>↗</span></a>
+          <a class="text-link" href="#despliegues">Explorar el sistema ↓</a>
+        </div>
+      </div>
       <div class="hero-index">GARMSCALES® / 2026</div>
     </section>
     <section class="founder section light-section"><div class="wrap founder-grid">
@@ -61,11 +92,85 @@
     <section class="section light-section orbit-section"><div class="wrap narrow-heading center"><p class="eyebrow">La red que construimos</p><h2>Tu marca siempre en movimiento.</h2><p class="section-lead">Una red visual de identidad, producto, tienda y crecimiento trabajando en conjunto.</p></div><div class="orbit-stage" aria-label="Galería visual de GARMSCALES"><div class="orbit-ring"></div><div class="orbit-track">
       <img src="https://i.imgur.com/Rxi4dle.jpg" alt="Identidad de marca de moda" loading="lazy"><img src="./founder.jpg" alt="Fundador de GARMSCALES" loading="lazy"><img src="https://i.imgur.com/HSjGtmp.jpg" alt="Producto de moda" loading="lazy"><img src="https://i.imgur.com/ulsUY4B.jpg" alt="E-commerce de moda" loading="lazy"><img src="https://i.imgur.com/H0cQcry.jpg" alt="Dirección creativa" loading="lazy"><img src="https://i.imgur.com/05yK3vF.jpg" alt="Escala y crecimiento" loading="lazy">
     </div><div class="orbit-core"><span>G</span><small>GARMSCALES</small></div></div></section>
+    
+    <!-- ── 3D CYLINDER CAROUSEL: LIFESTYLE & BRAND VISION ── -->
+    <section class="cylinder-section" id="cultura">
+      <div class="wrap narrow-heading center">
+        <p class="eyebrow light">Cultura y Estilo de Vida</p>
+        <h2>El impacto visual que tu marca merece.</h2>
+        <p class="section-lead" style="color: #aaa;">Generamos contenido, estética comercial y drops de alto nivel para posicionar tu firma de moda.</p>
+      </div>
+
+      <div class="cylinder-carousel-root" data-speed="40">
+        <div class="cylinder-container" style="--n: 8; --w: 220px; --ba: calc(1turn / 8); --anim-dur: 35s; --tz: 360px;">
+          
+          <div class="cylinder-card" style="--i: 0;">
+            <video autoplay muted loop playsinline preload="auto" poster="./streetwear.png">
+              <source src="./VIDEOS/lifestyle-1.mp4" type="video/mp4">
+            </video>
+            <div class="card-caption"><span>01</span> Street Luxury</div>
+          </div>
+
+          <div class="cylinder-card" style="--i: 1;">
+            <video autoplay muted loop playsinline preload="auto" poster="./shopify.png">
+              <source src="./VIDEOS/lifestyle-2.mp4" type="video/mp4">
+            </video>
+            <div class="card-caption"><span>02</span> High Ambition</div>
+          </div>
+
+          <div class="cylinder-card" style="--i: 2;">
+            <video autoplay muted loop playsinline preload="auto" poster="./automation.png">
+              <source src="./VIDEOS/lifestyle-3.mp4" type="video/mp4">
+            </video>
+            <div class="card-caption"><span>03</span> Global Drops</div>
+          </div>
+
+          <div class="cylinder-card" style="--i: 3;">
+            <video autoplay muted loop playsinline preload="auto" poster="./branding.png">
+              <source src="./VIDEOS/lifestyle-4.mp4" type="video/mp4">
+            </video>
+            <div class="card-caption"><span>04</span> Scaled Vision</div>
+          </div>
+
+          <div class="cylinder-card" style="--i: 4;">
+            <video autoplay muted loop playsinline preload="auto" poster="./streetwear.png">
+              <source src="./VIDEOS/lifestyle-5.mp4" type="video/mp4">
+            </video>
+            <div class="card-caption"><span>05</span> Elite Aesthetics</div>
+          </div>
+
+          <div class="cylinder-card" style="--i: 5;">
+            <video autoplay muted loop playsinline preload="auto" poster="./shopify.png">
+              <source src="./VIDEOS/lifestyle-6.mp4" type="video/mp4">
+            </video>
+            <div class="card-caption"><span>06</span> Fast Execution</div>
+          </div>
+
+          <div class="cylinder-card" style="--i: 6;">
+            <video autoplay muted loop playsinline preload="auto" poster="./automation.png">
+              <source src="./VIDEOS/lifestyle-7.mp4" type="video/mp4">
+            </video>
+            <div class="card-caption"><span>07</span> Automated Sales</div>
+          </div>
+
+          <div class="cylinder-card" style="--i: 7;">
+            <video autoplay muted loop playsinline preload="auto" poster="./branding.png">
+              <source src="./VIDEOS/lifestyle-8.mp4" type="video/mp4">
+            </video>
+            <div class="card-caption"><span>08</span> Next-Gen Apparel</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <section class="section light-section testimonials"><div class="wrap narrow-heading"><p class="eyebrow">Resultados y casos</p><h2>Listos para escalar a tus metas.</h2></div><div class="video-rail" aria-label="Videos de casos GARMSCALES">
-      <article><video autoplay muted loop playsinline preload="auto" poster="./streetwear.png"><source src="./VIDEOS/testimonial-1.mp4" type="video/mp4"></video><div><strong>Estrategia de marca</strong><span>Concepto y dirección</span></div></article>
-      <article><video autoplay muted loop playsinline preload="auto" poster="./shopify.png"><source src="./VIDEOS/testimonial-2.mp4" type="video/mp4"></video><div><strong>Despliegue e-commerce</strong><span>Tienda y catálogo</span></div></article>
-      <article><video autoplay muted loop playsinline preload="auto" poster="./automation.png"><source src="./VIDEOS/testimonial-3.mp4" type="video/mp4"></video><div><strong>Automatización</strong><span>Conversión y analítica</span></div></article>
-      <article><video autoplay muted loop playsinline preload="auto" poster="./branding.png"><source src="./VIDEOS/testimonial-4.mp4" type="video/mp4"></video><div><strong>Identidad visual</strong><span>Branding y mockups</span></div></article>
+      <article><video autoplay muted loop playsinline preload="auto" poster="./streetwear.png"><source src="./VIDEOS/lifestyle-9.mp4" type="video/mp4"></video><div><strong>Estrategia de marca</strong><span>Concepto y dirección</span></div></article>
+      <article><video autoplay muted loop playsinline preload="auto" poster="./shopify.png"><source src="./VIDEOS/lifestyle-10.mp4" type="video/mp4"></video><div><strong>Despliegue e-commerce</strong><span>Tienda y catálogo</span></div></article>
+      <article><video autoplay muted loop playsinline preload="auto" poster="./automation.png"><source src="./VIDEOS/lifestyle-11.mp4" type="video/mp4"></video><div><strong>Automatización</strong><span>Conversión y analítica</span></div></article>
+      <article><video autoplay muted loop playsinline preload="auto" poster="./branding.png"><source src="./VIDEOS/lifestyle-12.mp4" type="video/mp4"></video><div><strong>Identidad visual</strong><span>Branding y mockups</span></div></article>
+      <article><video autoplay muted loop playsinline preload="auto" poster="./streetwear.png"><source src="./VIDEOS/lifestyle-13.mp4" type="video/mp4"></video><div><strong>High-End Lifestyle</strong><span>Audiencia global</span></div></article>
+      <article><video autoplay muted loop playsinline preload="auto" poster="./shopify.png"><source src="./VIDEOS/lifestyle-14.mp4" type="video/mp4"></video><div><strong>Ventas bajo demanda</strong><span>Producción y envíos</span></div></article>
     </div></section>
     <section class="section dark-section faq"><div class="wrap faq-grid"><div><p class="eyebrow light">Preguntas frecuentes</p><h2>Lo esencial antes de lanzar.</h2></div><div>
       <details><summary>¿En cuánto tiempo queda lista mi marca?<span>+</span></summary><p>La entrega inicial ocurre en 7 días laborables. Los proyectos avanzados reciben primero un mockup funcional para revisión.</p></details>
@@ -76,5 +181,7 @@
     <section class="cta" id="contacto"><div class="wrap"><p class="eyebrow light">Siguiente paso</p><h2>Construyamos tu marca de ropa hoy.</h2><a class="button" href="mailto:soporte@garmscales.com">soporte@garmscales.com <span>↗</span></a></div></section>
   </main>
   <footer><div class="wrap"><img src="./logo.png" alt="GARMSCALES"><p>© 2026 GARMSCALES. Todos los derechos reservados.</p><div><a href="./terms.html">Términos</a><a href="./privacy.html">Privacidad</a></div></div></footer>
+  <button class="spotify-launch" type="button" aria-label="Abrir playlist de GARMSCALES" aria-controls="spotify-panel" aria-expanded="false"><span class="spotify-icon" aria-hidden="true"><svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm114 365a16 16 0 0 1-22 5c-63-38-141-46-233-25a16 16 0 0 1-7-31c100-23 185-14 254 28a16 16 0 0 1 8 23zm32-71a20 20 0 0 1-28 7c-72-43-181-56-266-30a20 20 0 1 1-12-38c97-29 217-15 299 34a20 20 0 0 1 7 27zm3-74C309 176 161 171 79 196a24 24 0 0 1-14-46c95-29 260-23 359 36a24 24 0 0 1-27 42z"/></svg></span></button>
+  <div class="spotify-panel" id="spotify-panel" role="dialog" aria-modal="true" aria-label="Playlist para crear y trabajar" hidden><div class="spotify-backdrop" data-spotify-close></div><section class="spotify-card"><button class="spotify-close" type="button" aria-label="Cerrar playlist" data-spotify-close>×</button><p class="eyebrow">Focus mode</p><h2>Sonido para crear, trabajar y entrar en personaje.</h2><p class="spotify-description">Una selección para mantener el ritmo cuando diseñas, construyes una campaña o preparas tu siguiente misión. Dale play, enfócate y haz que el trabajo avance.</p><iframe title="Playlist de GARMSCALES en Spotify" src="https://open.spotify.com/embed/playlist/7l75gA0CRFQI3Yfq3ezgPg?utm_source=generator&amp;theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></section></div>
 </body>
 </html>
