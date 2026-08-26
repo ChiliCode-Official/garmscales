@@ -70,7 +70,16 @@ function initCylinderCarousels() {
     container.addEventListener('pointermove', move);
     container.addEventListener('pointerup', end);
     container.addEventListener('pointercancel', end);
+    root.addEventListener('wheel', event => {
+      rotation += event.deltaY * 0.22;
+      lastFrame = performance.now();
+    }, { passive: true });
   });
 }
 initCylinderCarousels();
 window.addEventListener('resize', initCylinderCarousels, { passive: true });
+const sectionOrder=['#inicio','#fundador','#despliegues','#servicios','#cultura','#proceso','.testimonials','.why','.orbit-section','#planes','.faq','#contacto'];
+const siteMain=document.querySelector('main');
+if(siteMain){sectionOrder.forEach(selector=>{const section=document.querySelector(selector);if(section)siteMain.appendChild(section)})}
+accelWrapper?.addEventListener('click',event=>{if(!accelMode?.checked||!event.target.closest('.accel-letter'))return;accelBurst.style.left=`${event.clientX}px`;accelBurst.style.top=`${event.clientY}px`});
+const accelMode=document.querySelector('#accel-mode');const accelControl=document.querySelector('.accel-control');const accelWrapper=document.querySelector('.morph-text-wrapper');let accelBurst=document.createElement('div');accelBurst.className='accel-burst';document.body.appendChild(accelBurst);const prepareAccel=()=>{accelWrapper?.querySelectorAll('.morph-word').forEach(word=>{if(word.dataset.accelReady)return;word.dataset.accelReady='true';word.innerHTML=[...word.textContent].map(char=>`<span class="accel-letter">${char===' '?'&nbsp;':char}</span>`).join('')})};accelMode?.addEventListener('change',()=>{accelControl?.classList.toggle('is-active',accelMode.checked);if(accelMode.checked)prepareAccel()});accelWrapper?.addEventListener('click',event=>{const letter=event.target.closest('.accel-letter');if(!accelMode?.checked||!letter)return;accelBurst.classList.remove('is-visible');void accelBurst.offsetWidth;accelBurst.classList.add('is-visible');accelWrapper.querySelectorAll('.accel-letter').forEach((item,index)=>{item.style.setProperty('--x',`${(Math.random()-.5)*70}vw`);item.style.setProperty('--r',`${(Math.random()-.5)*900}deg`);item.style.setProperty('--delay',`${Math.random()*.35}s`);item.classList.add('is-launched');setTimeout(()=>item.classList.remove('is-launched'),1800)});setTimeout(()=>accelBurst.classList.remove('is-visible'),2100)});
